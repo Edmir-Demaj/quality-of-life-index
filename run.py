@@ -188,7 +188,7 @@ def select_continent():
         time.sleep(1)
         print(ts.C + "e) Oceania\n")
         time.sleep(1)
-        print(" ")
+        # print(" ")
         user_choice = input(ts.W + "Please select one of the options: \n")
 
         if validate_cont_choice(user_choice):
@@ -207,6 +207,7 @@ def validate_cont_choice(user_choice):
     a correct selection for continents above.
     """
     try:
+        # check if user_choice value is not inside the list.
         if user_choice not in ["a", "b", "c", "d", "e"]:
             raise ValueError(f"You entered wrong value {user_choice}")
     except ValueError as error:
@@ -218,6 +219,35 @@ def validate_cont_choice(user_choice):
     return True
 
 
+def access_sheet():
+    """
+    Based on user continent selection will
+    access and open Google sheet (quality_of_life_index)
+    so can get data for different countries.
+    """
+    user_continent = select_continent()
+    if user_continent == "a":
+        continent = AFRICA
+        cont_name = "Africa"
+        return continent, cont_name
+    elif user_continent == "b":
+        continent = ASIA
+        cont_name = "Asia"
+        return continent, cont_name
+    elif user_continent == "c":
+        continent = EUROPE
+        cont_name = "Europe"
+        return continent, cont_name
+    elif user_continent == "d":
+        continent = AMERICA
+        cont_name = "America"
+        return continent, cont_name
+    else:
+        continent = OCEANIA
+        cont_name = "Oceania"
+        return continent, cont_name
+
+
 def main():
     """
     Here on this main function will call the other
@@ -226,7 +256,7 @@ def main():
     """
     # logo()
     # app_info()
-    select_continent()
+    access_sheet()
 
 
 main()
