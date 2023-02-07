@@ -225,27 +225,29 @@ def access_sheet():
     access and open Google sheet (quality_of_life_index)
     so can get data for different countries.
     """
-    user_continent = select_continent()
-    if user_continent == "a":
-        continent = AFRICA
+    # cont it's a short form of continent,used to reduce code lines
+    user_cont = select_continent()
+    if user_cont == "a":
+        # cont_data access all data from worksheet named as below
+        cont_data = AFRICA
         cont_name = "Africa"
-        return continent, cont_name
-    elif user_continent == "b":
-        continent = ASIA
+        return cont_data, cont_name
+    elif user_cont == "b":
+        cont_data = ASIA
         cont_name = "Asia"
-        return continent, cont_name
-    elif user_continent == "c":
-        continent = EUROPE
+        return cont_data, cont_name
+    elif user_cont == "c":
+        cont_data = EUROPE
         cont_name = "Europe"
-        return continent, cont_name
-    elif user_continent == "d":
-        continent = AMERICA
+        return cont_data, cont_name
+    elif user_cont == "d":
+        cont_data = AMERICA
         cont_name = "America"
-        return continent, cont_name
+        return cont_data, cont_name
     else:
-        continent = OCEANIA
+        cont_data = OCEANIA
         cont_name = "Oceania"
-        return continent, cont_name
+        return cont_data, cont_name
 
 
 def main():
