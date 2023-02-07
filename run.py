@@ -52,4 +52,25 @@ def clean_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 
+def logo():
+    """
+    This function shows a welcome message and a
+    logo to users when the application starts/run.
+    """
+    print(' ')
+    print_slowly('WELCOME TO QUALITY OF LIFE INDEX !')
+    time.sleep(1.5)
+    print(' ')
+    print(ts.B + "        ____    _        _____   ")
+    print(ts.B + "       / __ \  | |      |_   _|  ")
+    print(ts.B + "      | |  | | | |        | |    ")
+    print(ts.C + "      | |  | | | |        | |    ")
+    print(ts.C + "      | |  | | | |        | |    ")
+    print(ts.C + "      | |__| | | |____   _| |_   ")
+    print(ts.C + "       \___\_\ |______| |_____|  ")
+    print(' ')
+    time.sleep(3)
+    # clean_screen()
 
+
+logo()
