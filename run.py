@@ -196,10 +196,10 @@ def select_continent():
 
         if validate_cont_choice(user_choice):
             print(" ")
-            print_slowly(f"{ts.G}Input valid. Proceessing...\n")
-            print(" ")
+            print(f"{ts.G}Input valid. Proceessing...\n")
             print(ts.W + "--------------------------------------------")
             time.sleep(2)
+            clean_screen()
             break
 
     return user_choice
@@ -262,6 +262,19 @@ def select_country():
     select the Country they want data from and
     get input value for Country name.
     """
+    cont_name = access_sheet()
+    user_cont_name = cont_name[1]
+    print_slowly(f"{ts.W} Now let's choose a Country from {user_cont_name}\n")
+    print_slowly(f"{ts.W} to get the Quality of Life Index.\n")
+    print(" ")
+    print_slowly(f"{ts.R} *** Important ! ***\n")
+    print_slowly(f"{ts.W} In order to receive data, the name of the\n")
+    print_slowly(f"{ts.W} Country should be typed as the example:\n")
+    print(" ")
+    print_slowly(f"{ts.C} Ireland or\n")
+    print_slowly(f"{ts.C} Czech Republic or\n")
+    print_slowly(f"{ts.C} New Zealand etc.\n")
+    print(" ")
 
 
 def main():
@@ -272,7 +285,7 @@ def main():
     """
     # logo()
     # app_info()
-    access_sheet()
+    select_country()
 
 
 main()
