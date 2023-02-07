@@ -70,7 +70,13 @@ def logo():
     print(ts.C + "       \___\_\ |______| |_____|  ")
     print(' ')
     time.sleep(3)
-    # clean_screen()
+    clean_screen()
 
 
-logo()
+def main():
+    """
+    Here on this main function will call the other
+    functions inside it. This way is more easy to call
+    functions and control flow of app.
+    """
+    logo()
