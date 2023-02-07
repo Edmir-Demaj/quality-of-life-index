@@ -17,18 +17,18 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive"
     ]
 
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('quality_of_life_index')
+SHEET = GSPREAD_CLIENT.open("quality_of_life_index")
 
 # Create const variable to open each worksheet
 # so can use later on code easily following the 'DRY' rule.
-AFRICA = SHEET.worksheet('Africa').get_all_values()
-ASIA = SHEET.worksheet('Asia').get_all_values()
-EUROPE = SHEET.worksheet('Europe').get_all_values()
-AMERICA = SHEET.worksheet('America').get_all_values()
-OCEANIA = SHEET.worksheet('Oceania').get_all_values()
+AFRICA = SHEET.worksheet("Africa").get_all_values()
+ASIA = SHEET.worksheet("Asia").get_all_values()
+EUROPE = SHEET.worksheet("Europe").get_all_values()
+AMERICA = SHEET.worksheet("America").get_all_values()
+OCEANIA = SHEET.worksheet("Oceania").get_all_values()
 
 
 # Code below was taken from Stack Owerflow.
@@ -49,7 +49,7 @@ def clean_screen():
     This function clean terminal from content when
     is called, it refers to the operating system OS.
     """
-    os.system('cls' if os.name == 'nt' else 'clear')
+    os.system("cls" if os.name == "nt" else "clear")
 
 
 def logo():
@@ -57,10 +57,10 @@ def logo():
     This function shows a welcome message and a
     logo to users when the application starts/run.
     """
-    print(' ')
-    print_slowly('WELCOME TO QUALITY OF LIFE INDEX !')
+    print(" ")
+    print_slowly("WELCOME TO QUALITY OF LIFE INDEX !")
     time.sleep(1.5)
-    print(' ')
+    print(" ")
     print(ts.B + "        ____    _        _____   ")
     print(ts.B + "       / __ \  | |      |_   _|  ")
     print(ts.B + "      | |  | | | |        | |    ")
@@ -68,7 +68,7 @@ def logo():
     print(ts.C + "      | |  | | | |        | |    ")
     print(ts.C + "      | |__| | | |____   _| |_   ")
     print(ts.C + "       \___\_\ |______| |_____|  ")
-    print(' ')
+    print(" ")
     time.sleep(3)
     clean_screen()
 
@@ -78,20 +78,20 @@ def app_info():
     On this function will provide info about
     the app so users can understand what is QLI.
     """
-    print(ts.W + ' ')
-    print_slowly('Quality of Life Index (higher is better)\n')
-    print_slowly('is an estimation of overall quality of life,\n')
-    print_slowly('using an empirical formula which consider:\n')
-    print('--------------------------------------------')
-    print_slowly(ts.G + 'Purchasing power Index (higher is better)\n')
-    print_slowly(ts.Y + 'Pollution Index (lower is better)\n')
-    print_slowly(ts.Y + 'House price to Income ratio (lower is better)\n')
-    print_slowly(ts.Y + 'Cost of living Index (lower is better)\n')
-    print_slowly(ts.G + 'Safety Index (higher is better)\n')
-    print_slowly(ts.G + 'Health care Index (higher is better)\n')
-    print_slowly(ts.Y + 'Traffic commute time Index (lower is better)\n')
-    print_slowly(ts.G + 'Climate Index (higher is better)\n')
-    print(ts.W + '--------------------------------------------')
+    print(ts.W + " ")
+    print_slowly("Quality of Life Index (higher is better)\n")
+    print_slowly("is an estimation of overall quality of life,\n")
+    print_slowly("using an empirical formula which consider:\n")
+    print("--------------------------------------------")
+    print_slowly(ts.G + "Purchasing power Index (higher is better)\n")
+    print_slowly(ts.Y + "Pollution Index (lower is better)\n")
+    print_slowly(ts.Y + "House price to Income ratio (lower is better)\n")
+    print_slowly(ts.Y + "Cost of living Index (lower is better)\n")
+    print_slowly(ts.G + "Safety Index (higher is better)\n")
+    print_slowly(ts.G + "Health care Index (higher is better)\n")
+    print_slowly(ts.Y + "Traffic commute time Index (lower is better)\n")
+    print_slowly(ts.G + "Climate Index (higher is better)\n")
+    print(ts.W + "--------------------------------------------")
     time.sleep(4)
     clean_screen()
 
@@ -100,26 +100,26 @@ def get_user_name():
     """
     Get users name from an input() method.
     """
-    print(' ')
+    print(" ")
     print_slowly("Let's start exploring different countries...\n")
     time.sleep(1.5)
-    print(' ')
-    print_slowly('First insert your name with letters no\n')
-    print_slowly('longer than 13 characters and no numbers.\n')
-    print(' ')
+    print(" ")
+    print_slowly("First insert your name with letters no\n")
+    print_slowly("longer than 13 characters and no numbers.\n")
+    print(" ")
 
     while True:
-        username = input(ts.Y + 'Please enter your name: \n')
-        print(ts.W + ' ')
-        print_slowly(ts.C + 'Validating your input value...\n')
+        username = input(ts.Y + "Please enter your name: \n")
+        print(ts.W + " ")
+        print_slowly(ts.C + "Validating your input value...\n")
         time.sleep(1.5)
-        print(ts.W + '--------------------------------------------')
+        print(ts.W + "--------------------------------------------")
 
         if validate_username(username):
-            print(' ')
-            print(ts.G + 'Input value entered is valid.Processing...\n')
-            print(ts.W + '--------------------------------------------')
-            time.sleep(3)
+            print(" ")
+            print(ts.G + "Input value entered is valid. Processing...\n")
+            print(ts.W + "--------------------------------------------")
+            time.sleep(1.5)
             clean_screen()
             break
 
@@ -134,12 +134,12 @@ def validate_username(username):
     """
     try:
         # check for empty input value
-        if username == '':
+        if username == "":
             raise ValueError(
                 f"You entered empty value: '{username}'"
             )
         # chek for Enter keyword input value
-        if username.strip() == '':
+        if username.strip() == "":
             raise ValueError(
                 f"You entered empty value: '{username}'"
             )
@@ -156,12 +156,42 @@ def validate_username(username):
     except ValueError as error:
         print(' ')
         print(f"{ts.R}Invalid data:\n{error}.\nPlease enter correct value.\n")
-        print(ts.W + '--------------------------------------------')
+        print(ts.W + "--------------------------------------------")
         time.sleep(3)
         clean_screen()
         return False
 
     return True
+
+
+def select_continent():
+    """
+    This function will provide alternatives for user to
+    choose from which Continent they want data.
+    """
+    username = get_user_name()
+    print_slowly(f"{ts.W}Great {username} !\n")
+    print(" ")
+    print_slowly("Now please select one of the Continents you want\n")
+    print_slowly("to get data from. Make your selection:\n")
+    print(" ")
+    while True:
+        print_slowly(ts.Y + "Type one of the letters [a, b, c, d, e]\n")
+        print(" ")
+        time.sleep(1)
+        print(ts.C + "a) Africa\n")
+        time.sleep(1)
+        print(ts.C + "b) Asia\n")
+        time.sleep(1)
+        print(ts.C + "c) Europe\n")
+        time.sleep(1)
+        print(ts.C + "d) America\n")
+        time.sleep(1)
+        print(ts.C + "e) Oceania\n")
+        time.sleep(1)
+        print(" ")
+        user_choice = input(ts.W + "Please select one of the options: \n")
+        print(user_choice)
 
 
 def main():
@@ -172,7 +202,7 @@ def main():
     """
     # logo()
     # app_info()
-    get_user_name()
+    select_continent()
 
 
 main()
