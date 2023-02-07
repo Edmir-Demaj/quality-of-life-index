@@ -79,21 +79,41 @@ def app_info():
     the app so users can understand what is QLI.
     """
     print(ts.W + ' ')
-    print_slowly("Quality of Life Index (higher is better)\n")
-    print_slowly("is an estimation of overall quality of life,\n")
-    print_slowly("using an empirical formula which consider:\n")
+    print_slowly('Quality of Life Index (higher is better)\n')
+    print_slowly('is an estimation of overall quality of life,\n')
+    print_slowly('using an empirical formula which consider:\n')
     print('--------------------------------------------')
-    print_slowly(ts.G + "Purchasing power Index (higher is better)\n")
-    print_slowly(ts.Y + "Pollution Index (lower is better)\n")
-    print_slowly(ts.Y + "House price to Income ratio (lower is better)\n")
-    print_slowly(ts.Y + "Cost of living Index (lower is better)\n")
-    print_slowly(ts.G + "Safety Index (higher is better)\n")
-    print_slowly(ts.G + "Health care Index (higher is better)\n")
-    print_slowly(ts.Y + "Traffic commute time Index (lower is better)\n")
-    print_slowly(ts.G + "Climate Index (higher is better)\n")
+    print_slowly(ts.G + 'Purchasing power Index (higher is better)\n')
+    print_slowly(ts.Y + 'Pollution Index (lower is better)\n')
+    print_slowly(ts.Y + 'House price to Income ratio (lower is better)\n')
+    print_slowly(ts.Y + 'Cost of living Index (lower is better)\n')
+    print_slowly(ts.G + 'Safety Index (higher is better)\n')
+    print_slowly(ts.G + 'Health care Index (higher is better)\n')
+    print_slowly(ts.Y + 'Traffic commute time Index (lower is better)\n')
+    print_slowly(ts.G + 'Climate Index (higher is better)\n')
     print(ts.W + '--------------------------------------------')
     time.sleep(4)
     clean_screen()
+
+
+def get_user_name():
+    """
+    Get users name from an input() method.
+    """
+    print(' ')
+    print_slowly("Let's start exploring different countries...\n")
+    time.sleep(1.5)
+    print(' ')
+    print_slowly('First insert your name with letters no\n')
+    print_slowly('longer than 13 characters and no numbers.\n')
+    print(' ')
+    username = input(ts.Y + 'Please enter your name: \n')
+    print(ts.W + ' ')
+    print_slowly(ts.C + 'Validating your input...\n')
+    time.sleep(1.5)
+    print(ts.W + '--------------------------------------------')
+
+    return username
 
 
 def main():
@@ -102,8 +122,9 @@ def main():
     functions inside it. This way is more easy to call
     functions and control flow of app.
     """
-    logo()
-    app_info()
+    # logo()
+    # app_info()
+    get_user_name()
 
 
 main()
