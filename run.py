@@ -58,7 +58,7 @@ def logo():
     logo to users when the application starts/run.
     """
     print(" ")
-    print_slowly("WELCOME TO QUALITY OF LIFE INDEX !")
+    print_slowly("Welcome to Quality of Life Index !")
     time.sleep(1.5)
     print(" ")
     print(ts.B + "        ____    _        _____   ")
@@ -101,11 +101,11 @@ def get_user_name():
     Get users name from an input() method.
     """
     print(" ")
-    print_slowly("Let's start exploring different countries...\n")
+    print_slowly("Let's start...\n")
     time.sleep(1.5)
     print(" ")
-    print_slowly("First insert your name with letters no\n")
-    print_slowly("longer than 13 characters and no numbers.\n")
+    print_slowly("First insert your name with letters between\n")
+    print_slowly("2 and 13 characters long and no numbers.\n")
     print(" ")
 
     while True:
@@ -149,9 +149,9 @@ def validate_username(username):
                 f"You entered numeric value: '{username}'"
             )
         # check the length of input value
-        if len(username) > 13:
+        if len(username) > 13 or len(username) < 2:
             raise ValueError(
-                f"You entered more than 13 characters value: '{username}\n'"
+                f"You entered wrong number of characters: '{len(username)}'"
             )
     except ValueError as error:
         print(' ')
@@ -170,9 +170,9 @@ def select_continent():
     choose from which Continent they want data.
     """
     username = get_user_name()
-    print_slowly(f"{ts.W}Great {username} !\n")
+    print_slowly(f"{ts.W}Great {ts.Y}{username} !\n")
     print(" ")
-    print_slowly("Now please select one of the Continents you want\n")
+    print_slowly(ts.W + "Now please select one of the Continents you want\n")
     print_slowly("to get data from. Make your selection:\n")
     print(" ")
     while True:
@@ -188,13 +188,17 @@ def select_continent():
         time.sleep(1)
         print(ts.C + "e) Oceania\n")
         time.sleep(1)
-        # print(" ")
         user_choice = input(ts.W + "Please select one of the options: \n")
+        print(" ")
+        print_slowly(ts.C + "Validating your input value...\n")
+        time.sleep(1.5)
+        print(ts.W + "--------------------------------------------")
 
         if validate_cont_choice(user_choice):
             print(" ")
-            print_slowly(f"{ts.G}Getting data for your selection...\n")
+            print_slowly(f"{ts.G}Input valid. Proceessing...\n")
             print(" ")
+            print(ts.W + "--------------------------------------------")
             time.sleep(2)
             break
 
@@ -209,9 +213,11 @@ def validate_cont_choice(user_choice):
     try:
         # check if user_choice value is not inside the list.
         if user_choice not in ["a", "b", "c", "d", "e"]:
-            raise ValueError(f"You entered wrong value {user_choice}")
+            raise ValueError(f"You entered wrong value: {user_choice}")
     except ValueError as error:
+        print(" ")
         print(f"{ts.R}Invalid selection:\n{error}. Please try again !\n ")
+        print(ts.W + "--------------------------------------------")
         time.sleep(3)
         clean_screen()
         return False
@@ -248,6 +254,14 @@ def access_sheet():
         cont_data = OCEANIA
         cont_name = "Oceania"
         return cont_data, cont_name
+
+
+def select_country():
+    """
+    This function provides user with info how to
+    select the Country they want data from and
+    get input value for Country name.
+    """
 
 
 def main():
