@@ -177,7 +177,6 @@ def select_continent():
     print(" ")
     while True:
         print_slowly(ts.Y + "Type one of the letters [a, b, c, d, e]\n")
-        print(" ")
         time.sleep(1)
         print(ts.C + "a) Africa\n")
         time.sleep(1)
@@ -191,7 +190,32 @@ def select_continent():
         time.sleep(1)
         print(" ")
         user_choice = input(ts.W + "Please select one of the options: \n")
-        print(user_choice)
+
+        if validate_cont_choice(user_choice):
+            print(" ")
+            print_slowly(f"{ts.G}Getting data for your selection...\n")
+            print(" ")
+            time.sleep(2)
+            break
+
+    return user_choice
+
+
+def validate_cont_choice(user_choice):
+    """
+    This function validates if user has made
+    a correct selection for continents above.
+    """
+    try:
+        if user_choice not in ["a", "b", "c", "d", "e"]:
+            raise ValueError(f"You entered wrong value {user_choice}")
+    except ValueError as error:
+        print(f"{ts.R}Invalid selection:\n{error}. Please try again !\n ")
+        time.sleep(3)
+        clean_screen()
+        return False
+
+    return True
 
 
 def main():
