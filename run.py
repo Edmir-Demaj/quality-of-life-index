@@ -107,30 +107,61 @@ def get_user_name():
     print_slowly('First insert your name with letters no\n')
     print_slowly('longer than 13 characters and no numbers.\n')
     print(' ')
-    username = input(ts.Y + 'Please enter your name: \n')
-    print(ts.W + ' ')
-    print_slowly(ts.C + 'Validating your input...\n')
-    time.sleep(1.5)
-    print(ts.W + '--------------------------------------------')
 
-    # validate_username(username)
+    while True:
+        username = input(ts.Y + 'Please enter your name: \n')
+        print(ts.W + ' ')
+        print_slowly(ts.C + 'Validating your input value...\n')
+        time.sleep(1.5)
+        print(ts.W + '--------------------------------------------')
+
+        if validate_username(username):
+            print(' ')
+            print(ts.G + 'Input value entered is valid.Processing...\n')
+            print(ts.W + '--------------------------------------------')
+            time.sleep(3)
+            clean_screen()
+            break
+
     return username
 
 
-def validate_username():
+def validate_username(username):
     """
     This function will validate users input name
     inside a try block and raise error if data is incorrect.
     Provides a clear error message.
     """
-    username = input(ts.Y + 'Please enter your name: \n')
     try:
+        # check for empty input value
         if username == '':
             raise ValueError(
                 f"You entered empty value: '{username}'"
             )
+        # chek for Enter keyword input value
+        if username.strip() == '':
+            raise ValueError(
+                f"You entered empty value: '{username}'"
+            )
+        # check for numeric input value
+        if username.isnumeric():
+            raise ValueError(
+                f"You entered numeric value: '{username}'"
+            )
+        # check the length of input value
+        if len(username) > 13:
+            raise ValueError(
+                f"You entered more than 13 characters value: '{username}\n'"
+            )
     except ValueError as error:
-        print(f"Invalid data{error}")
+        print(' ')
+        print(f"{ts.R}Invalid data:\n{error}.\nPlease enter correct value.\n")
+        print(ts.W + '--------------------------------------------')
+        time.sleep(3)
+        clean_screen()
+        return False
+
+    return True
 
 
 def main():
@@ -141,7 +172,7 @@ def main():
     """
     # logo()
     # app_info()
-    # get_user_name()
-    validate_username()
+    get_user_name()
+
 
 main()
