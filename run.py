@@ -5,9 +5,9 @@ aswell to style the output for user for better UX.
 import sys
 import os
 import time
-from style import TextStyle as ts
 import gspread
 from google.oauth2.service_account import Credentials
+from style import TextStyle as ts
 
 # Code below was taken from love_sandwiches walkthrough project
 # with Code Institute. Refered to Credits on README.md file.
@@ -44,4 +44,12 @@ def print_slowly(text):
         time.sleep(0.08)
 
 
-print_slowly(ts.Y + "this is dummy text for testing\n")
+def clean_screen():
+    """
+    This function clean terminal from content when
+    is called, it refers to the operating system OS.
+    """
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+
