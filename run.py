@@ -113,7 +113,24 @@ def get_user_name():
     time.sleep(1.5)
     print(ts.W + '--------------------------------------------')
 
+    # validate_username(username)
     return username
+
+
+def validate_username():
+    """
+    This function will validate users input name
+    inside a try block and raise error if data is incorrect.
+    Provides a clear error message.
+    """
+    username = input(ts.Y + 'Please enter your name: \n')
+    try:
+        if username == '':
+            raise ValueError(
+                f"You entered empty value: '{username}'"
+            )
+    except ValueError as error:
+        print(f"Invalid data{error}")
 
 
 def main():
@@ -124,7 +141,7 @@ def main():
     """
     # logo()
     # app_info()
-    get_user_name()
-
+    # get_user_name()
+    validate_username()
 
 main()
