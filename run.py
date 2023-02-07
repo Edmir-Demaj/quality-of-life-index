@@ -73,6 +73,29 @@ def logo():
     clean_screen()
 
 
+def app_info():
+    """
+    On this function will provide info about
+    the app so users can understand what is QLI.
+    """
+    print(ts.W + ' ')
+    print_slowly("Quality of Life Index (higher is better)\n")
+    print_slowly("is an estimation of overall quality of life,\n")
+    print_slowly("using an empirical formula which consider:\n")
+    print('--------------------------------------------')
+    print_slowly(ts.G + "Purchasing power Index (higher is better)\n")
+    print_slowly(ts.Y + "Pollution Index (lower is better)\n")
+    print_slowly(ts.Y + "House price to Income ratio (lower is better)\n")
+    print_slowly(ts.Y + "Cost of living Index (lower is better)\n")
+    print_slowly(ts.G + "Safety Index (higher is better)\n")
+    print_slowly(ts.G + "Health care Index (higher is better)\n")
+    print_slowly(ts.Y + "Traffic commute time Index (lower is better)\n")
+    print_slowly(ts.G + "Climate Index (higher is better)\n")
+    print(ts.W + '--------------------------------------------')
+    time.sleep(4)
+    clean_screen()
+
+
 def main():
     """
     Here on this main function will call the other
@@ -80,3 +103,7 @@ def main():
     functions and control flow of app.
     """
     logo()
+    app_info()
+
+
+main()
