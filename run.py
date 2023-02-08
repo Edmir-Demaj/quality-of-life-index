@@ -24,7 +24,7 @@ SHEET = GSPREAD_CLIENT.open("quality_of_life_index")
 
 # Create const variable to open each worksheet
 # so can use later on code easily following the 'DRY' rule.
-AFRICA = SHEET.worksheet("Africa").get_all_values()
+AFRICA = SHEET.worksheet("Africa")
 ASIA = SHEET.worksheet("Asia").get_all_values()
 EUROPE = SHEET.worksheet("Europe").get_all_values()
 AMERICA = SHEET.worksheet("America").get_all_values()
@@ -110,8 +110,8 @@ def get_user_name():
 
     while True:
         username = input(ts.Y + "Please enter your name: \n")
-        print(ts.W + " ")
-        print_slowly(ts.C + "Validating your input value...\n")
+        print(" ")
+        print_slowly("Validating your input value...\n")
         time.sleep(1.5)
         print(ts.W + "--------------------------------------------")
 
@@ -190,7 +190,7 @@ def select_continent():
         time.sleep(1)
         user_choice = input(ts.W + "Please select one of the options: \n")
         print(" ")
-        print_slowly(ts.C + "Validating your input value...\n")
+        print_slowly(ts.Y + "Validating your input value...\n")
         time.sleep(1.5)
         print(ts.W + "--------------------------------------------")
 
@@ -275,6 +275,25 @@ def select_country():
     print_slowly(f"{ts.C} Czech Republic or\n")
     print_slowly(f"{ts.C} New Zealand etc.\n")
     print(" ")
+    user_country = input(ts.W + "Please enter the name of Country: \n")
+    country_name = user_country.capitalize()
+
+    return country_name, cont_name
+
+
+def validate_country():
+    """
+    This function will validate if Country choosed from
+    user is valid as input and if is on database of QLI sheet.
+    """
+    country_data = select_country()
+    # Find the cell where Country belongs on worksheet
+    cell = country_data[1][0].find(country_data[0], in_column=2)
+    # Based on cell get row number to access all data for that Country
+    row = cell.row
+    country_index_values = country_data[1][0].row_values(row)
+    print(country_index_values)
+    # second_column = [row[1] for row in country]
 
 
 def main():
@@ -285,7 +304,7 @@ def main():
     """
     # logo()
     # app_info()
-    select_country()
+    validate_country()
 
 
 main()
