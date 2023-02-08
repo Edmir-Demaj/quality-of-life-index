@@ -363,6 +363,7 @@ def specific_data(index):
             print(f"Climate Index: {index[2][10]}\n")
             time.sleep(7)
             clean_screen()
+            other_country()
             break
 
     return answer
@@ -380,9 +381,24 @@ def validate_answer(answer):
         clean_screen()
         return True
     elif answer == "no":
-        print("answer is no")
+        other_country()
     else:
         print("wrong answer")
+
+
+def other_country():
+    """
+    Ask user if they want data for another country.
+    """
+    print_slowly("Would you like to get QLI for another country?\n")
+    other_count_answer = input("Enter yes/no: \n")
+
+    if other_count_answer == "yes":
+        select_continent()
+    if other_count_answer == "no":
+        print(" ")
+        print_slowly("Thank you for using Quality of Life Index application")
+        print(" ")
 
 
 def main():
