@@ -54,8 +54,8 @@ def clean_screen():
 
 def logo():
     """
-    This function shows a welcome message and a
-    logo to users when the application starts/run.
+    Shows a welcome message and a logo to users
+    when the application starts/run.
     """
     print(" ")
     print_slowly("Welcome to Quality of Life Index !")
@@ -75,8 +75,7 @@ def logo():
 
 def app_info():
     """
-    On this function will provide info about
-    the app so users can understand what is QLI.
+    Provide info about the app so users can understand what is QLI.
     """
     print(ts.W + " ")
     print_slowly("Quality of Life Index (higher is better)\n")
@@ -128,9 +127,8 @@ def app_info():
 
 # def validate_username(username):
 #     """
-#     This function will validate users input name
-#     inside a try block and raise error if data is incorrect.
-#     Provides a clear error message.
+#     Validate users input name inside a try block
+#     and raise error if data is incorrect.
 #     """
 #     try:
 #         # check for empty input value
@@ -190,7 +188,7 @@ def select_continent():
         time.sleep(1)
         user_choice = input(ts.W + "Please select one of the options: \n")
         print(" ")
-        print_slowly(ts.Y + "Validating your input value...\n")
+        print_slowly("Validating your input value...\n")
         time.sleep(1.5)
         print(ts.W + "--------------------------------------------")
 
@@ -308,8 +306,8 @@ def select_country():
 
 def validate_country(country_name, cont_name):
     """
-    This function will validate if Country choosed from
-    user is valid on database of QLI sheet.
+    Validate if Country choosed from user is
+    valid on database of QLI sheet.
     """
     country_column = cont_name[0].col_values(2)
 
@@ -330,28 +328,72 @@ def validate_country(country_name, cont_name):
         return False
 
 
-def specific_data():
+def specific_data(index):
     """
     Function to provide more specific data if user wants
     to get more details about Country.
     """
     while True:
-        print(" ")
         print_slowly("Would you like to get more specific data?\n")
         answer = input("Enter yes/no:\n")
-        print(answer)
+
+        if validate_answer(answer):
+            print(ts.G + "Higher is better 0-100")
+            print(f"Purchasing Power Index is: {index[2][3]}\n")
+            time.sleep(1.2)
+            print(ts.R + "Lower is better 0-100")
+            print(f"Pollution Index: {index[2][9]}\n")
+            time.sleep(1.2)
+            print(ts.R + "Lower is better 0-100")
+            print(f"House Price to Income Ratio: {index[2][7]}\n")
+            time.sleep(1.2)
+            print(ts.R + "Lower is better 0-100")
+            print(f"Cost of Living Index: {index[2][6]}\n")
+            time.sleep(1.2)
+            print(ts.G + "Higher is better 0-100")
+            print(f"Safety Index is: {index[2][4]}\n")
+            time.sleep(1.2)
+            print(ts.G + "Higher is better 0-100")
+            print(f"Health Care Index: {index[2][5]}\n")
+            time.sleep(1.2)
+            print(ts.R + "Lower is better 0-100")
+            print(f"Traffic Commute Time Index: {index[2][8]}\n")
+            time.sleep(1.2)
+            print(ts.G + "Higher is better 0-100")
+            print(f"Climate Index: {index[2][10]}\n")
+            time.sleep(7)
+            clean_screen()
+            break
+
+    return answer
+
+
+def validate_answer(answer):
+    """
+    Will validate users answer if yes/no and
+    will provide more data or error message.
+    """
+    if answer == "yes":
+        print(" ")
+        print("Getting specific data...\n")
+        time.sleep(1.5)
+        clean_screen()
+        return True
+    elif answer == "no":
+        print("answer is no")
+    else:
+        print("wrong answer")
 
 
 def main():
     """
     Here on this main function will call the other
-    functions inside it. This way is more easy to call
-    functions and control flow of app.
+    functions inside it.
     """
     # logo()
     # app_info()
-    # select_country()
-    specific_data()
+    data = select_country()
+    specific_data(data)
 
 
 main()
