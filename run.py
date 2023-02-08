@@ -95,84 +95,83 @@ def app_info():
     clean_screen()
 
 
-# def get_user_name():
-#     """
-#     Get users name from an input() method.
-#     """
-#     print(" ")
-#     print_slowly("Let's start...\n")
-#     time.sleep(1.5)
-#     print(" ")
-#     print_slowly("First insert your name with letters between\n")
-#     print_slowly("2 and 13 characters long and no numbers.\n")
-#     print(" ")
+def get_user_name():
+    """
+    Get users name from an input() method.
+    """
+    print(" ")
+    print_slowly("Let's start...\n")
+    time.sleep(1.5)
+    print(" ")
+    print_slowly("First insert your name with letters between\n")
+    print_slowly("2 and 13 characters long and no numbers.\n")
+    print(" ")
 
-#     while True:
-#         username = input(ts.Y + "Please enter your name: \n")
-#         print(" ")
-#         print_slowly("Validating your input value...\n")
-#         time.sleep(1.5)
-#         print(ts.W + "--------------------------------------------")
+    while True:
+        username = input(ts.Y + "Please enter your name: \n")
+        print(" ")
+        print_slowly("Validating your input value...\n")
+        time.sleep(1.5)
+        print(ts.W + "--------------------------------------------")
 
-#         if validate_username(username):
-#             print(" ")
-#             print(ts.G + "Input value entered is valid. Processing...\n")
-#             print(ts.W + "--------------------------------------------")
-#             time.sleep(2)
-#             clean_screen()
-#             break
+        if validate_username(username):
+            print(" ")
+            print(ts.G + "Input value entered is valid. Processing...\n")
+            print(ts.W + "--------------------------------------------")
+            time.sleep(2)
+            clean_screen()
+            break
 
-#     return username
-
-
-# def validate_username(username):
-#     """
-#     Validate users input name inside a try block
-#     and raise error if data is incorrect.
-#     """
-#     try:
-#         # check for empty input value
-#         if username == "":
-#             raise ValueError(
-#                 f"You entered empty value: '{username}'"
-#             )
-#         # chek for Enter keyword input value
-#         if username.strip() == "":
-#             raise ValueError(
-#                 f"You entered empty value: '{username}'"
-#             )
-#         # check for numeric input value
-#         if username.isnumeric():
-#             raise ValueError(
-#                 f"You entered numeric value: '{username}'"
-#             )
-#         # check the length of input value
-#         if len(username) > 13 or len(username) < 2:
-#             raise ValueError(
-#                 f"You entered wrong number of characters: '{len(username)}'"
-#             )
-#     except ValueError as error:
-#         print(' ')
-#         print(f"{ts.R}Invalid data:\n{error}.\nPlease enter correct value.\n")
-#         print(ts.W + "--------------------------------------------")
-#         time.sleep(3)
-#         clean_screen()
-#         return False
-
-#     return True
+    return username
 
 
-def select_continent():
+def validate_username(username):
+    """
+    Validate users input name inside a try block
+    and raise error if data is incorrect.
+    """
+    try:
+        # check for empty input value
+        if username == "":
+            raise ValueError(
+                f"You entered empty value: '{username}'"
+            )
+        # chek for Enter keyword input value
+        if username.strip() == "":
+            raise ValueError(
+                f"You entered empty value: '{username}'"
+            )
+        # check for numeric input value
+        if username.isnumeric():
+            raise ValueError(
+                f"You entered numeric value: '{username}'"
+            )
+        # check the length of input value
+        if len(username) > 13 or len(username) < 2:
+            raise ValueError(
+                f"You entered wrong number of characters: '{len(username)}'"
+            )
+    except ValueError as error:
+        print(' ')
+        print(f"{ts.R}Invalid data:\n{error}.\nPlease enter correct value.\n")
+        print(ts.W + "--------------------------------------------")
+        time.sleep(3)
+        clean_screen()
+        return False
+
+    return True
+
+
+def select_continent(name):
     """
     This function will provide alternatives for user to
     choose from which Continent they want data.
     """
-    # username = get_user_name()
-    # print_slowly(f"{ts.W}Great {ts.Y}{username} !\n")
-    # print(" ")
-    # print_slowly(ts.W + "Now please select one of the Continents you want\n")
-    # print_slowly("to get data from. Make your selection:\n")
-    # print(" ")
+    print_slowly(f"{ts.W}Great {ts.Y}{name} !\n")
+    print(" ")
+    print_slowly(ts.W + "Now please select one of the Continents you want\n")
+    print_slowly("to get data from. Make your selection:\n")
+    print(" ")
     while True:
         print_slowly(ts.Y + "Type one of the letters [a, b, c, d, e]\n")
         time.sleep(1)
@@ -223,14 +222,13 @@ def validate_cont_choice(user_choice):
     return True
 
 
-def access_sheet():
+def access_sheet(user_cont):
     """
     Based on user continent selection will
     access and open Google sheet (quality_of_life_index)
     so can get data for different countries.
     """
     # cont it's a short form of continent,used to reduce code lines
-    user_cont = select_continent()
     if user_cont == "a":
         # cont_data access all data from worksheet named as below
         cont_data = AFRICA
@@ -254,13 +252,12 @@ def access_sheet():
         return cont_data, cont_name
 
 
-def select_country():
+def select_country(cont_name):
     """
     This function provides user with info how to select
     the Country they want data from, get users Country name
     and provide data for that Country.
     """
-    cont_name = access_sheet()
     user_cont_name = cont_name[1]
     print_slowly(f"{ts.W} Now let's choose a Country from {user_cont_name}\n")
     print_slowly(f"{ts.W} to get the Quality of Life Index.\n")
@@ -321,10 +318,11 @@ def validate_country(country_name, cont_name):
     else:
         print(" ")
         print_slowly(ts.R + "Sorry but we don't have any data on our\n")
-        print_slowly(f"database for {ts.C}{country_name} in {cont_name[1]}.\n")
+        print_slowly(f"database for '{ts.C}{country_name}' in {cont_name[1]}.\n")
         print_slowly(ts.R + "Make sure your Country name is correct!\n")
         print_slowly(ts.Y + "Please try another Country!\n")
         print(" ")
+        clean_screen()
         return False
 
 
@@ -381,7 +379,10 @@ def validate_answer(answer):
         clean_screen()
         return True
     elif answer == "no":
+        print(" ")
         other_country()
+        print(" ")
+        return False
     else:
         print("wrong answer")
 
@@ -390,15 +391,22 @@ def other_country():
     """
     Ask user if they want data for another country.
     """
-    print_slowly("Would you like to get QLI for another country?\n")
+    print_slowly("Would you like to get QLI for another Country?\n")
     other_count_answer = input("Enter yes/no: \n")
 
     if other_count_answer == "yes":
-        select_continent()
-    if other_count_answer == "no":
+        clean_screen()
+        # name = get_user_name()
+        user_cont = select_continent(name)
+        worksheet = access_sheet(user_cont)
+        data = select_country(worksheet)
+        specific_data(data)
+    elif other_count_answer == "no":
         print(" ")
         print_slowly("Thank you for using Quality of Life Index application")
         print(" ")
+        time.sleep(2)
+        clean_screen()
 
 
 def main():
@@ -406,9 +414,12 @@ def main():
     Here on this main function will call the other
     functions inside it.
     """
-    # logo()
-    # app_info()
-    data = select_country()
+    logo()
+    app_info()
+    name = get_user_name()
+    user_cont = select_continent(name)
+    worksheet = access_sheet(user_cont)
+    data = select_country(worksheet)
     specific_data(data)
 
 
