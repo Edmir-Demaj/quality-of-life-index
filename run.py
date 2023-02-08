@@ -96,72 +96,72 @@ def app_info():
     clean_screen()
 
 
-def get_user_name():
-    """
-    Get users name from an input() method.
-    """
-    print(" ")
-    print_slowly("Let's start...\n")
-    time.sleep(1.5)
-    print(" ")
-    print_slowly("First insert your name with letters between\n")
-    print_slowly("2 and 13 characters long and no numbers.\n")
-    print(" ")
+# def get_user_name():
+#     """
+#     Get users name from an input() method.
+#     """
+#     print(" ")
+#     print_slowly("Let's start...\n")
+#     time.sleep(1.5)
+#     print(" ")
+#     print_slowly("First insert your name with letters between\n")
+#     print_slowly("2 and 13 characters long and no numbers.\n")
+#     print(" ")
 
-    while True:
-        username = input(ts.Y + "Please enter your name: \n")
-        print(" ")
-        print_slowly("Validating your input value...\n")
-        time.sleep(1.5)
-        print(ts.W + "--------------------------------------------")
+#     while True:
+#         username = input(ts.Y + "Please enter your name: \n")
+#         print(" ")
+#         print_slowly("Validating your input value...\n")
+#         time.sleep(1.5)
+#         print(ts.W + "--------------------------------------------")
 
-        if validate_username(username):
-            print(" ")
-            print(ts.G + "Input value entered is valid. Processing...\n")
-            print(ts.W + "--------------------------------------------")
-            time.sleep(2)
-            clean_screen()
-            break
+#         if validate_username(username):
+#             print(" ")
+#             print(ts.G + "Input value entered is valid. Processing...\n")
+#             print(ts.W + "--------------------------------------------")
+#             time.sleep(2)
+#             clean_screen()
+#             break
 
-    return username
+#     return username
 
 
-def validate_username(username):
-    """
-    This function will validate users input name
-    inside a try block and raise error if data is incorrect.
-    Provides a clear error message.
-    """
-    try:
-        # check for empty input value
-        if username == "":
-            raise ValueError(
-                f"You entered empty value: '{username}'"
-            )
-        # chek for Enter keyword input value
-        if username.strip() == "":
-            raise ValueError(
-                f"You entered empty value: '{username}'"
-            )
-        # check for numeric input value
-        if username.isnumeric():
-            raise ValueError(
-                f"You entered numeric value: '{username}'"
-            )
-        # check the length of input value
-        if len(username) > 13 or len(username) < 2:
-            raise ValueError(
-                f"You entered wrong number of characters: '{len(username)}'"
-            )
-    except ValueError as error:
-        print(' ')
-        print(f"{ts.R}Invalid data:\n{error}.\nPlease enter correct value.\n")
-        print(ts.W + "--------------------------------------------")
-        time.sleep(3)
-        clean_screen()
-        return False
+# def validate_username(username):
+#     """
+#     This function will validate users input name
+#     inside a try block and raise error if data is incorrect.
+#     Provides a clear error message.
+#     """
+#     try:
+#         # check for empty input value
+#         if username == "":
+#             raise ValueError(
+#                 f"You entered empty value: '{username}'"
+#             )
+#         # chek for Enter keyword input value
+#         if username.strip() == "":
+#             raise ValueError(
+#                 f"You entered empty value: '{username}'"
+#             )
+#         # check for numeric input value
+#         if username.isnumeric():
+#             raise ValueError(
+#                 f"You entered numeric value: '{username}'"
+#             )
+#         # check the length of input value
+#         if len(username) > 13 or len(username) < 2:
+#             raise ValueError(
+#                 f"You entered wrong number of characters: '{len(username)}'"
+#             )
+#     except ValueError as error:
+#         print(' ')
+#         print(f"{ts.R}Invalid data:\n{error}.\nPlease enter correct value.\n")
+#         print(ts.W + "--------------------------------------------")
+#         time.sleep(3)
+#         clean_screen()
+#         return False
 
-    return True
+#     return True
 
 
 def select_continent():
@@ -169,12 +169,12 @@ def select_continent():
     This function will provide alternatives for user to
     choose from which Continent they want data.
     """
-    username = get_user_name()
-    print_slowly(f"{ts.W}Great {ts.Y}{username} !\n")
-    print(" ")
-    print_slowly(ts.W + "Now please select one of the Continents you want\n")
-    print_slowly("to get data from. Make your selection:\n")
-    print(" ")
+    # username = get_user_name()
+    # print_slowly(f"{ts.W}Great {ts.Y}{username} !\n")
+    # print(" ")
+    # print_slowly(ts.W + "Now please select one of the Continents you want\n")
+    # print_slowly("to get data from. Make your selection:\n")
+    # print(" ")
     while True:
         print_slowly(ts.Y + "Type one of the letters [a, b, c, d, e]\n")
         time.sleep(1)
@@ -258,9 +258,9 @@ def access_sheet():
 
 def select_country():
     """
-    This function provides user with info how to
-    select the Country they want data from and
-    get input value for Country name.
+    This function provides user with info how to select
+    the Country they want data from, get users Country name
+    and provide data for that Country.
     """
     cont_name = access_sheet()
     user_cont_name = cont_name[1]
@@ -303,7 +303,7 @@ def select_country():
             clean_screen()
             break
 
-    return country_name, cont_name
+    return country_name, cont_name, country_index
 
 
 def validate_country(country_name, cont_name):
@@ -330,6 +330,18 @@ def validate_country(country_name, cont_name):
         return False
 
 
+def specific_data():
+    """
+    Function to provide more specific data if user wants
+    to get more details about Country.
+    """
+    while True:
+        print(" ")
+        print_slowly("Would you like to get more specific data?\n")
+        answer = input("Enter yes/no:\n")
+        print(answer)
+
+
 def main():
     """
     Here on this main function will call the other
@@ -338,7 +350,8 @@ def main():
     """
     # logo()
     # app_info()
-    select_country()
+    # select_country()
+    specific_data()
 
 
 main()
