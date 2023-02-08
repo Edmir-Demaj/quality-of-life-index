@@ -25,10 +25,10 @@ SHEET = GSPREAD_CLIENT.open("quality_of_life_index")
 # Create const variable to open each worksheet
 # so can use later on code easily following the 'DRY' rule.
 AFRICA = SHEET.worksheet("Africa")
-ASIA = SHEET.worksheet("Asia").get_all_values()
-EUROPE = SHEET.worksheet("Europe").get_all_values()
-AMERICA = SHEET.worksheet("America").get_all_values()
-OCEANIA = SHEET.worksheet("Oceania").get_all_values()
+ASIA = SHEET.worksheet("Asia")
+EUROPE = SHEET.worksheet("Europe")
+AMERICA = SHEET.worksheet("America")
+OCEANIA = SHEET.worksheet("Oceania")
 
 
 # Code below was taken from Stack Owerflow.
@@ -119,7 +119,7 @@ def get_user_name():
             print(" ")
             print(ts.G + "Input value entered is valid. Processing...\n")
             print(ts.W + "--------------------------------------------")
-            time.sleep(1.5)
+            time.sleep(2)
             clean_screen()
             break
 
@@ -275,25 +275,59 @@ def select_country():
     print_slowly(f"{ts.C} Czech Republic or\n")
     print_slowly(f"{ts.C} New Zealand etc.\n")
     print(" ")
-    user_country = input(ts.W + "Please enter the name of Country: \n")
-    country_name = user_country.capitalize()
+    while True:
+        user_country = input(ts.W + "Please enter the name of Country: \n")
+        country_name = user_country.capitalize()
+        time.sleep(1)
+
+        if validate_country(country_name, cont_name):
+            # Find the cell where Country belongs on worksheet
+            cell = cont_name[0].find(country_name, in_column=2)
+            # Based on cell get row number to access all data for that Country
+            row = cell.row
+            # Get data from the specifi row
+            country_index = cont_name[0].row_values(row)
+            print_slowly(f"Showing data for {country_name}: \n")
+            print(" ")
+            print_slowly(f"Quality of Life Index: {country_index[2]}\n")
+            print_slowly(f"Rank in {cont_name[1]} is: {country_index[0]}\n")
+            time.sleep(1)
+            print(ts.W + "--------------------------------------------")
+            print(ts.G + "If Q.L.I bigger than 160 (High Quality of Life)")
+            print(" ")
+            print(ts.Y + "If Q.L.I between 100-160 (Medium Quality of Life)")
+            print(" ")
+            print(ts.R + "If Q.L.I smaller than 100 (Low Quality of Life)")
+            print(ts.W + "--------------------------------------------")
+            time.sleep(5)
+            clean_screen()
+            break
 
     return country_name, cont_name
 
 
-def validate_country():
+def validate_country(country_name, cont_name):
     """
     This function will validate if Country choosed from
-    user is valid as input and if is on database of QLI sheet.
+    user is valid on database of QLI sheet.
     """
-    country_data = select_country()
-    # Find the cell where Country belongs on worksheet
-    cell = country_data[1][0].find(country_data[0], in_column=2)
-    # Based on cell get row number to access all data for that Country
-    row = cell.row
-    country_index_values = country_data[1][0].row_values(row)
-    print(country_index_values)
-    # second_column = [row[1] for row in country]
+    country_column = cont_name[0].col_values(2)
+
+    if country_name in country_column:
+        print(" ")
+        print_slowly(f"Getting data for {ts.C}{country_name}...\n")
+        print(ts.W + "--------------------------------------------")
+        time.sleep(2)
+        clean_screen()
+        return True
+    else:
+        print(" ")
+        print_slowly(ts.R + "Sorry but we don't have any data on our\n")
+        print_slowly(f"database for {ts.C}{country_name} in {cont_name[1]}.\n")
+        print_slowly(ts.R + "Make sure your Country name is correct!\n")
+        print_slowly(ts.Y + "Please try another Country!\n")
+        print(" ")
+        return False
 
 
 def main():
@@ -304,7 +338,7 @@ def main():
     """
     # logo()
     # app_info()
-    validate_country()
+    select_country()
 
 
 main()
