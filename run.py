@@ -100,7 +100,7 @@ def app_info():
     print(ts.Y + "Traffic commute time Index (lower is better)\n")
     time.sleep(1)
     print(ts.G + "Climate Index (higher is better)\n")
-    time.sleep(4)
+    time.sleep(5)
     clean_screen()
 
 
@@ -109,8 +109,7 @@ def get_user_name():
     Get user name from an input method. Run a While Loop
     until input is valid.
     """
-    print(" ")
-    print_slowly("Let's start...\n")
+    print_slowly(ts.W + "Let's start...\n")
     time.sleep(1.5)
     print(" ")
     print("First insert your name with letters between\n")
@@ -271,7 +270,7 @@ def select_country(cont_name):
     while True:
         print(" ")
         user_country = input(ts.Y + "Please enter the name of Country: \n")
-        country_name = user_country.capitalize()
+        country_name = user_country.title()
         time.sleep(1)
 
         if validate_country(country_name, cont_name):
@@ -285,7 +284,7 @@ def select_country(cont_name):
             time.sleep(1)
             print(f"Quality of Life Index: {country_index[2]}\n")
             print(f"Rank in {cont_name[1]} is: {country_index[0]}\n")
-            time.sleep(1)
+            time.sleep(2)
             print(ts.W + "--------------------------------------------")
             print(ts.G + "If Q.L.I bigger than 160 (High Quality of Life)")
             print(" ")
@@ -293,7 +292,7 @@ def select_country(cont_name):
             print(" ")
             print(ts.R + "If Q.L.I smaller than 100 (Low Quality of Life)")
             print(ts.W + "--------------------------------------------")
-            time.sleep(4)
+            time.sleep(5)
             clean_screen()
             break
 
@@ -402,9 +401,9 @@ def other_country():
         time.sleep(2)
         print(" ")
         print(ts.W + "--------------------------------------------")
-        print_slowly("Thank you for using Quality of Life Index.\n")
+        print_slowly(ts.Y + "Thank you for using Quality of Life Index.\n")
         print(" ")
-        print_slowly(ts.Y + "     Copyright Edmir Demaj - 2023\n")
+        print_slowly("     Copyright Edmir Demaj - 2023\n")
         print(ts.W + "--------------------------------------------")
         print(" ")
         time.sleep(3)
@@ -421,8 +420,8 @@ def main():
     """
     Run all program functions.
     """
-    logo()
-    app_info()
+    # logo()
+    # app_info()
     name = get_user_name()
     user_cont = select_continent(name)
     worksheet = access_sheet(user_cont)
