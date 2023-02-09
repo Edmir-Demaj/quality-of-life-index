@@ -172,8 +172,7 @@ def select_continent(*name):
         user = name[0].capitalize()
         print(f"{ts.W}Great {ts.Y}{user} !\n")
         time.sleep(1.5)
-    print(ts.W + "Now please select one of the Continents you want\n")
-    print("to get data from:\n")
+    print(ts.W + "Now please select one of the Continents to get data:\n")
 
     while True:
         print(ts.Y + "Type one of the letters [a, b, c, d, e]\n")
@@ -253,19 +252,19 @@ def select_country(cont_name):
     and provide data for that Country.
     """
     user_cont_name = cont_name[1]
-    print_slowly(f"{ts.W} Now let's choose a Country from {user_cont_name}\n")
-    print_slowly(f"{ts.W} to get the Quality of Life Index.\n")
-    print(" ")
-    print_slowly(f"{ts.R} *** Important ! ***\n")
-    print_slowly(f"{ts.W} In order to receive data, the name of the\n")
-    print_slowly(f"{ts.W} Country should be typed as the example:\n")
-    print(" ")
-    print_slowly(f"{ts.C} Ireland or\n")
-    print_slowly(f"{ts.C} Czech Republic or\n")
-    print_slowly(f"{ts.C} New Zealand etc.\n")
-    print(" ")
+    print(f"{ts.W} Now choose a Country from {ts.Y}{user_cont_name}\n")
+    print(f"{ts.W} to get the {ts.Y}Quality of Life Index.\n")
+    time.sleep(1)
+    print(f"{ts.R} *** Important ! ***\n")
+    print(f"{ts.W} In order to receive data, the name of the\n")
+    print(f"{ts.W} Country should be typed as the example:\n")
+    time.sleep(1)
+    print_slowly(f"{ts.B} Ireland or\n")
+    print_slowly(f"{ts.B} Czech Republic or\n")
+    print_slowly(f"{ts.B} New Zealand etc.\n")
     while True:
-        user_country = input(ts.W + "Please enter the name of Country: \n")
+        print(" ")
+        user_country = input(ts.Y + "Please enter the name of Country: \n")
         country_name = user_country.capitalize()
         time.sleep(1)
 
@@ -276,10 +275,10 @@ def select_country(cont_name):
             row = cell.row
             # Get data from the specifi row
             country_index = cont_name[0].row_values(row)
-            print_slowly(f"Showing data for {country_name}: \n")
-            print(" ")
-            print_slowly(f"Quality of Life Index: {country_index[2]}\n")
-            print_slowly(f"Rank in {cont_name[1]} is: {country_index[0]}\n")
+            print(f"Showing data for {country_name}: \n")
+            time.sleep(1)
+            print(f"Quality of Life Index: {country_index[2]}\n")
+            print(f"Rank in {cont_name[1]} is: {country_index[0]}\n")
             time.sleep(1)
             print(ts.W + "--------------------------------------------")
             print(ts.G + "If Q.L.I bigger than 160 (High Quality of Life)")
@@ -304,18 +303,18 @@ def validate_country(country_name, cont_name):
 
     if country_name in country_column:
         print(" ")
-        print_slowly(f"Getting data for {ts.C}{country_name}...\n")
+        print(f"Getting data for {ts.B}{country_name}...\n")
         print(ts.W + "--------------------------------------------")
-        time.sleep(2)
+        time.sleep(1.5)
         clean_screen()
         return True
     else:
-        print(" ")
-        print_slowly(ts.R + "Sorry but we don't have any data on our\n")
-        print_slowly(f"database for '{ts.C}{country_name}' in {cont_name[1]}.\n")
-        print_slowly(ts.R + "Make sure your Country name is correct!\n")
-        print_slowly(ts.Y + "Please try another Country!\n")
-        print(" ")
+        print(ts.W + "--------------------------------------------")
+        print(ts.R + "Sorry but we don't have any data for:\n")
+        print(f"{ts.B}'{country_name}' in '{cont_name[1]}'.\n")
+        print(ts.R + "Make sure your Country name is correct!\n")
+        print("Please try again different Country!\n")
+        time.sleep(3)
         clean_screen()
         return False
 
@@ -413,8 +412,8 @@ def main():
     # app_info()
     name = get_user_name()
     user_cont = select_continent(name)
-    # worksheet = access_sheet(user_cont)
-    # data = select_country(worksheet)
+    worksheet = access_sheet(user_cont)
+    data = select_country(worksheet)
     # specific_data(data)
 
 
