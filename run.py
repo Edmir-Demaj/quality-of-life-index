@@ -287,7 +287,7 @@ def select_country(cont_name):
             print(" ")
             print(ts.R + "If Q.L.I smaller than 100 (Low Quality of Life)")
             print(ts.W + "--------------------------------------------")
-            time.sleep(5)
+            time.sleep(4)
             clean_screen()
             break
 
@@ -376,39 +376,38 @@ def other_country():
     Ask user if they want data for another country.
     Validate the answer from user.
     """
-    while True:
-        print(ts.Y + "Would you like to get QLI for another Country?\n")
-        other_count = input("Enter yes/no: \n")
-        other_count_answer = other_count.lower()
+    print(ts.Y + "Would you like to get QLI for another Country?\n")
+    other_count = input("Enter yes/no: \n")
+    other_count_answer = other_count.lower()
 
-        if other_count_answer == "yes":
-            time.sleep(1)
-            clean_screen()
-            user_cont = select_continent()
-            worksheet = access_sheet(user_cont)
-            data = select_country(worksheet)
-            specific_data(data)
-            return False
-        elif other_count_answer == "no":
-            time.sleep(1)
-            clean_screen()
-            print(" ")
-            print(ts.W + "Terminating application...\n")
-            time.sleep(2)
-            print(" ")
-            print_slowly("Thank you for using Quality of Life Index App.\n")
-            print(" ")
-            print_slowly(ts.Y + "      Copyright Edmir Demaj - 2023\n")
-            print(ts.W + "--------------------------------------------")
-            print(" ")
-            time.sleep(3)
-            clean_screen()
-            return False
-        else:
-            print(ts.R + "Wrong answer! Try again.")
-            print(ts.W + "--------------------------------------------")
-            time.sleep(3)
-            return True
+    if other_count_answer == "yes":
+        time.sleep(1)
+        clean_screen()
+        user_cont = select_continent()
+        worksheet = access_sheet(user_cont)
+        data = select_country(worksheet)
+        specific_data(data)
+    elif other_count_answer == "no":
+        time.sleep(1)
+        clean_screen()
+        print(" ")
+        print(ts.W + "Terminating application...\n")
+        time.sleep(2)
+        print(" ")
+        print(ts.W + "--------------------------------------------")
+        print_slowly("Thank you for using Quality of Life Index App.\n")
+        print(" ")
+        print_slowly(ts.Y + "      Copyright Edmir Demaj - 2023\n")
+        print(ts.W + "--------------------------------------------")
+        print(" ")
+        time.sleep(3)
+        clean_screen()
+    else:
+        print(ts.R + "Wrong answer! Try again.")
+        print(ts.W + "--------------------------------------------")
+        time.sleep(2)
+        clean_screen()
+        other_country()
 
 
 def main():
