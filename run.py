@@ -41,7 +41,7 @@ def print_slowly(text):
     for letter in text:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0.08)
+        time.sleep(0)
 
 
 def clean_screen():
@@ -118,11 +118,12 @@ def get_user_name():
             print(" ")
             print(ts.G + "Input value entered is valid. Processing...\n")
             print(ts.W + "--------------------------------------------")
+            print("lets go now edi and")
             time.sleep(2)
             clean_screen()
-            break
+            return username
 
-    return username
+    return
 
 
 def validate_username(username):
@@ -162,12 +163,13 @@ def validate_username(username):
     return True
 
 
-def select_continent(name):
+def select_continent(*args):
     """
     This function will provide alternatives for user to
     choose from which Continent they want data.
     """
-    print_slowly(f"{ts.W}Great {ts.Y}{name} !\n")
+    if args:
+        print_slowly(f"{ts.W}Great {ts.Y}{args} !\n")
     print(" ")
     print_slowly(ts.W + "Now please select one of the Continents you want\n")
     print_slowly("to get data from. Make your selection:\n")
@@ -396,8 +398,7 @@ def other_country():
 
     if other_count_answer == "yes":
         clean_screen()
-        # name = get_user_name()
-        user_cont = select_continent(name)
+        user_cont = select_continent()
         worksheet = access_sheet(user_cont)
         data = select_country(worksheet)
         specific_data(data)
