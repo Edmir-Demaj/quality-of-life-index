@@ -116,7 +116,7 @@ def get_user_name():
     print("2 and 13 characters long and no numbers.\n")
 
     while True:
-        username = input(ts.Y + "Please enter your name: \n")
+        username = input(ts.Y + "Please enter your name:\n")
         print(" ")
         print("Validating your input value...\n")
         time.sleep(1.5)
@@ -185,7 +185,7 @@ def select_continent(*name):
         print(ts.B + "c) Europe\n")
         print(ts.B + "d) America\n")
         print(ts.B + "e) Oceania\n")
-        choice = input(ts.Y + "Please select one of the options: \n")
+        choice = input(ts.Y + "Please select one of the options:\n")
         user_choice = choice.lower()
         print(" ")
         print("Validating your input value...\n")
@@ -269,7 +269,7 @@ def select_country(cont_name):
     print_slowly(f"{ts.B} New Zealand etc.\n")
     while True:
         print(" ")
-        user_country = input(ts.Y + "Please enter the name of Country: \n")
+        user_country = input(ts.Y + "Please enter the name of Country:\n")
         country_name = user_country.title()
         time.sleep(1)
 
@@ -383,7 +383,7 @@ def other_country():
     Validate the answer from user.
     """
     print(ts.Y + "Would you like to get QLI for another Country?\n")
-    other_count = input("Enter yes/no: \n")
+    other_count = input("Enter yes/no:\n")
     other_count_answer = other_count.lower()
 
     if other_count_answer == "yes":
