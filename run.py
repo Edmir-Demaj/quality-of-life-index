@@ -1,5 +1,5 @@
 """
-Import libraries needed for the application to function,
+Import libraries needed for application functionality,
 aswell to style the output on terminal for better UX.
 """
 import sys
@@ -22,8 +22,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("quality_of_life_index")
 
-# Create const variable to open each worksheet
-# so can use later on code easily following the 'DRY' rule.
+# Create const variables to open each worksheet
+# so can use later on code easily avoiding the 'DRY' rule.
 AFRICA = SHEET.worksheet("Africa")
 ASIA = SHEET.worksheet("Asia")
 EUROPE = SHEET.worksheet("Europe")
@@ -35,8 +35,8 @@ OCEANIA = SHEET.worksheet("Oceania")
 # Refered to Credits on README.md file.
 def print_slowly(text):
     """
-    Types text with animation slowing typing
-    time for print statment on terminal.
+    Types text with animation, slowing typing
+    time for print statments on terminal.
     """
     for letter in text:
         sys.stdout.write(letter)
@@ -44,18 +44,20 @@ def print_slowly(text):
         time.sleep(0.06)
 
 
+# Code below was taken from Stack Owerflow.
+# Refered to Credits on README.md file.
 def clean_screen():
     """
-    This function clean terminal from content when
-    is called, it refers to the operating system OS.
+    Clean terminal from content when is called,
+    it refers to the operating system OS.
     """
     os.system("cls" if os.name == "nt" else "clear")
 
 
 def logo():
     """
-    Shows a welcome message and a logo to users
-    when the application starts/run.
+    Shows a welcome message and a logo to user
+    when the application starts.
     """
     print(" ")
     print_slowly("Welcome to Quality of Life Index !")
@@ -75,7 +77,8 @@ def logo():
 
 def app_info():
     """
-    Provide info about the app so users can understand what is QLI.
+    Provide info about the app so user can understand what is QLI
+    and how is calculated for Countries.
     """
     print(ts.W + "Quality of Life Index (higher is better)\n")
     print("is an estimation of overall quality of life,\n")
@@ -103,7 +106,8 @@ def app_info():
 
 def get_user_name():
     """
-    Get users name from an input() method.
+    Get user name from an input method. Run a While Loop
+    until input is valid.
     """
     print(" ")
     print_slowly("Let's start...\n")
@@ -130,8 +134,8 @@ def get_user_name():
 
 def validate_username(username):
     """
-    Validate users input name inside a try block
-    and raise error if data is incorrect.
+    Validate user input name inside a try block
+    and raise specific error if data is incorrect.
     """
     try:
         # check for empty input value
@@ -165,8 +169,9 @@ def validate_username(username):
 
 def select_continent(*name):
     """
-    This function will provide alternatives for user to
-    choose from which Continent they want data.
+    This function runs a statement with user name. Provide list
+    of Continents to get data from and get user selection with input method.
+    Has a While Loop which runs until user insert valid input.
     """
     if name:
         user = name[0].capitalize()
@@ -199,8 +204,9 @@ def select_continent(*name):
 
 def validate_cont_choice(user_choice):
     """
-    This function validates if user has made
-    a correct selection for continents above.
+    Validates if user input for function above is valid.
+    Inside a try block valide input and inside except
+    block print the error raised on try block.
     """
     try:
         # check if user_choice value is not inside the list.
@@ -217,9 +223,9 @@ def validate_cont_choice(user_choice):
 
 def access_sheet(user_cont):
     """
-    Based on user continent selection will
-    access and open Google sheet (quality_of_life_index)
-    so can get data for different countries.
+    Based on user continent selection this function
+    access Google sheet (quality_of_life_index), so can
+    get data for different countries in that continent.
     """
     # cont it's a short form of continent,used to reduce code lines
     if user_cont == "a":
@@ -247,9 +253,9 @@ def access_sheet(user_cont):
 
 def select_country(cont_name):
     """
-    This function provides user with info how to select
-    the Country they want data from, get users Country name
-    and provide data for that Country.
+    Shows info how to select a Country to get data for.
+    Get users Country name with input method. Run a While Loop
+    until Contry name is valid. Provide data for Country selected.
     """
     user_cont_name = cont_name[1]
     print(f"{ts.W} Now choose a Country from {ts.Y}{user_cont_name}\n")
@@ -273,7 +279,7 @@ def select_country(cont_name):
             cell = cont_name[0].find(country_name, in_column=2)
             # Based on cell get row number to access all data for that Country
             row = cell.row
-            # Get data from the specifi row
+            # Get data from the specific row
             country_index = cont_name[0].row_values(row)
             print(f"Showing data for {country_name}: \n")
             time.sleep(1)
@@ -296,8 +302,8 @@ def select_country(cont_name):
 
 def validate_country(country_name, cont_name):
     """
-    Validate if Country choosed from user is
-    valid on database of QLI sheet.
+    Validate if Country selected from user is valid on
+    database of QLI sheet. If not ask for different Country name.
     """
     country_column = cont_name[0].col_values(2)
 
@@ -321,8 +327,9 @@ def validate_country(country_name, cont_name):
 
 def specific_data(index):
     """
-    Function to provide more specific data if user wants
-    to get more details about Country.
+    Provide more specific data if user wants
+    to get more details about Country selected.
+    Validate the answer from user.
     """
     print("Would you like to get more specific data?\n")
     answer_choice = input("Enter yes/no:\n")
@@ -395,9 +402,9 @@ def other_country():
         time.sleep(2)
         print(" ")
         print(ts.W + "--------------------------------------------")
-        print_slowly("Thank you for using Quality of Life Index App.\n")
+        print_slowly("Thank you for using Quality of Life Index.\n")
         print(" ")
-        print_slowly(ts.Y + "      Copyright Edmir Demaj - 2023\n")
+        print_slowly(ts.Y + "     Copyright Edmir Demaj - 2023\n")
         print(ts.W + "--------------------------------------------")
         print(" ")
         time.sleep(3)
@@ -412,11 +419,10 @@ def other_country():
 
 def main():
     """
-    Here on this main function will call the other
-    functions inside it.
+    Run all program functions.
     """
-    # logo()
-    # app_info()
+    logo()
+    app_info()
     name = get_user_name()
     user_cont = select_continent(name)
     worksheet = access_sheet(user_cont)

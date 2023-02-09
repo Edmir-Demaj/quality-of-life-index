@@ -1,15 +1,15 @@
 """
-Import library to style text for users on terminal.
+Import library to style text with colors for user on terminal.
 """
 from colorama import init, Fore
-
+# initialize colorama before using it on script.
 init()
 
 
 class TextStyle:
     """
     This class contains attributes for colors
-    assigned to variables to reduce code.
+    assigned to variables to reduce code repetion.
     """
     R = Fore.RED
     G = Fore.GREEN
