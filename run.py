@@ -109,26 +109,23 @@ def get_user_name():
     print_slowly("Let's start...\n")
     time.sleep(1.5)
     print(" ")
-    print_slowly("First insert your name with letters between\n")
-    print_slowly("2 and 13 characters long and no numbers.\n")
-    print(" ")
+    print("First insert your name with letters between\n")
+    print("2 and 13 characters long and no numbers.\n")
 
     while True:
         username = input(ts.Y + "Please enter your name: \n")
         print(" ")
-        print_slowly("Validating your input value...\n")
+        print("Validating your input value...\n")
         time.sleep(1.5)
         print(ts.W + "--------------------------------------------")
 
         if validate_username(username):
-            print(" ")
             print(ts.G + "Input value entered is valid. Processing...\n")
-            print(ts.W + "--------------------------------------------")
-            time.sleep(2)
+            time.sleep(1.5)
             clean_screen()
-            return username
+            break
 
-    return
+    return username
 
 
 def validate_username(username):
@@ -158,9 +155,7 @@ def validate_username(username):
                 f"You entered wrong number of characters: '{len(username)}'"
             )
     except ValueError as error:
-        print(' ')
         print(f"{ts.R}Invalid data:\n{error}.\nPlease enter correct value.\n")
-        print(ts.W + "--------------------------------------------")
         time.sleep(3)
         clean_screen()
         return False
@@ -422,9 +417,9 @@ def main():
     Here on this main function will call the other
     functions inside it.
     """
-    logo()
-    app_info()
-    # name = get_user_name()
+    # logo()
+    # app_info()
+    name = get_user_name()
     # user_cont = select_continent(name)
     # worksheet = access_sheet(user_cont)
     # data = select_country(worksheet)
