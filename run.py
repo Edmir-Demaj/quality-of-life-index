@@ -163,41 +163,35 @@ def validate_username(username):
     return True
 
 
-def select_continent(*args):
+def select_continent(*name):
     """
     This function will provide alternatives for user to
     choose from which Continent they want data.
     """
-    if args:
-        print_slowly(f"{ts.W}Great {ts.Y}{args[0]} !\n")
-    print(" ")
-    print_slowly(ts.W + "Now please select one of the Continents you want\n")
-    print_slowly("to get data from. Make your selection:\n")
-    print(" ")
+    if name:
+        user = name[0].capitalize()
+        print(f"{ts.W}Great {ts.Y}{user} !\n")
+        time.sleep(1.5)
+    print(ts.W + "Now please select one of the Continents you want\n")
+    print("to get data from:\n")
+
     while True:
-        print_slowly(ts.Y + "Type one of the letters [a, b, c, d, e]\n")
-        time.sleep(1)
-        print(ts.C + "a) Africa\n")
-        time.sleep(1)
-        print(ts.C + "b) Asia\n")
-        time.sleep(1)
-        print(ts.C + "c) Europe\n")
-        time.sleep(1)
-        print(ts.C + "d) America\n")
-        time.sleep(1)
-        print(ts.C + "e) Oceania\n")
-        time.sleep(1)
-        user_choice = input(ts.W + "Please select one of the options: \n")
+        print(ts.Y + "Type one of the letters [a, b, c, d, e]\n")
+        print(ts.B + "a) Africa\n")
+        print(ts.B + "b) Asia\n")
+        print(ts.B + "c) Europe\n")
+        print(ts.B + "d) America\n")
+        print(ts.B + "e) Oceania\n")
+        choice = input(ts.Y + "Please select one of the options: \n")
+        user_choice = choice.lower()
         print(" ")
-        print_slowly("Validating your input value...\n")
+        print("Validating your input value...\n")
         time.sleep(1.5)
         print(ts.W + "--------------------------------------------")
 
         if validate_cont_choice(user_choice):
-            print(" ")
             print(f"{ts.G}Input valid. Proceessing...\n")
-            print(ts.W + "--------------------------------------------")
-            time.sleep(2)
+            time.sleep(1.5)
             clean_screen()
             break
 
@@ -212,11 +206,9 @@ def validate_cont_choice(user_choice):
     try:
         # check if user_choice value is not inside the list.
         if user_choice not in ["a", "b", "c", "d", "e"]:
-            raise ValueError(f"You entered wrong value: {user_choice}")
+            raise ValueError(f"You entered wrong value: '{user_choice}'")
     except ValueError as error:
-        print(" ")
         print(f"{ts.R}Invalid selection:\n{error}. Please try again !\n ")
-        print(ts.W + "--------------------------------------------")
         time.sleep(3)
         clean_screen()
         return False
@@ -420,7 +412,7 @@ def main():
     # logo()
     # app_info()
     name = get_user_name()
-    # user_cont = select_continent(name)
+    user_cont = select_continent(name)
     # worksheet = access_sheet(user_cont)
     # data = select_country(worksheet)
     # specific_data(data)
