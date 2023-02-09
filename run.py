@@ -1,6 +1,6 @@
 """
 Import libraries needed for the application to function,
-aswell to style the output for user for better UX.
+aswell to style the output on terminal for better UX.
 """
 import sys
 import os
@@ -41,7 +41,7 @@ def print_slowly(text):
     for letter in text:
         sys.stdout.write(letter)
         sys.stdout.flush()
-        time.sleep(0)
+        time.sleep(0.06)
 
 
 def clean_screen():
@@ -77,20 +77,26 @@ def app_info():
     """
     Provide info about the app so users can understand what is QLI.
     """
-    print(ts.W + " ")
-    print_slowly("Quality of Life Index (higher is better)\n")
-    print_slowly("is an estimation of overall quality of life,\n")
-    print_slowly("using an empirical formula which consider:\n")
+    print(ts.W + "Quality of Life Index (higher is better)\n")
+    print("is an estimation of overall quality of life,\n")
+    print("using an empirical formula which consider:\n")
+    time.sleep(2)
     print("--------------------------------------------")
-    print_slowly(ts.G + "Purchasing power Index (higher is better)\n")
-    print_slowly(ts.Y + "Pollution Index (lower is better)\n")
-    print_slowly(ts.Y + "House price to Income ratio (lower is better)\n")
-    print_slowly(ts.Y + "Cost of living Index (lower is better)\n")
-    print_slowly(ts.G + "Safety Index (higher is better)\n")
-    print_slowly(ts.G + "Health care Index (higher is better)\n")
-    print_slowly(ts.Y + "Traffic commute time Index (lower is better)\n")
-    print_slowly(ts.G + "Climate Index (higher is better)\n")
-    print(ts.W + "--------------------------------------------")
+    print(ts.G + "Purchasing power Index (higher is better)\n")
+    time.sleep(1)
+    print(ts.Y + "Pollution Index (lower is better)\n")
+    time.sleep(1)
+    print(ts.Y + "House price to Income ratio (lower is better)\n")
+    time.sleep(1)
+    print(ts.Y + "Cost of living Index (lower is better)\n")
+    time.sleep(1)
+    print(ts.G + "Safety Index (higher is better)\n")
+    time.sleep(1)
+    print(ts.G + "Health care Index (higher is better)\n")
+    time.sleep(1)
+    print(ts.Y + "Traffic commute time Index (lower is better)\n")
+    time.sleep(1)
+    print(ts.G + "Climate Index (higher is better)\n")
     time.sleep(4)
     clean_screen()
 
@@ -118,7 +124,6 @@ def get_user_name():
             print(" ")
             print(ts.G + "Input value entered is valid. Processing...\n")
             print(ts.W + "--------------------------------------------")
-            print("lets go now edi and")
             time.sleep(2)
             clean_screen()
             return username
@@ -169,7 +174,7 @@ def select_continent(*args):
     choose from which Continent they want data.
     """
     if args:
-        print_slowly(f"{ts.W}Great {ts.Y}{args} !\n")
+        print_slowly(f"{ts.W}Great {ts.Y}{args[0]} !\n")
     print(" ")
     print_slowly(ts.W + "Now please select one of the Continents you want\n")
     print_slowly("to get data from. Make your selection:\n")
@@ -392,6 +397,7 @@ def validate_answer(answer):
 def other_country():
     """
     Ask user if they want data for another country.
+    Validate the answer from user.
     """
     print_slowly("Would you like to get QLI for another Country?\n")
     other_count_answer = input("Enter yes/no: \n")
@@ -404,7 +410,8 @@ def other_country():
         specific_data(data)
     elif other_count_answer == "no":
         print(" ")
-        print_slowly("Thank you for using Quality of Life Index application")
+        print_slowly("Thank you for using Quality of Life Index application.")
+        print(" (c) Edmir Demaj 2023")
         print(" ")
         time.sleep(2)
         clean_screen()
@@ -417,11 +424,11 @@ def main():
     """
     logo()
     app_info()
-    name = get_user_name()
-    user_cont = select_continent(name)
-    worksheet = access_sheet(user_cont)
-    data = select_country(worksheet)
-    specific_data(data)
+    # name = get_user_name()
+    # user_cont = select_continent(name)
+    # worksheet = access_sheet(user_cont)
+    # data = select_country(worksheet)
+    # specific_data(data)
 
 
 main()
