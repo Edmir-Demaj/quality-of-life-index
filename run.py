@@ -257,7 +257,7 @@ def select_country(cont_name):
     time.sleep(1)
     print(f"{ts.R} *** Important ! ***\n")
     print(f"{ts.W} In order to receive data, the name of the\n")
-    print(f"{ts.W} Country should be typed as the example:\n")
+    print(f"{ts.W} Country name should be typed as the example:\n")
     time.sleep(1)
     print_slowly(f"{ts.B} Ireland or\n")
     print_slowly(f"{ts.B} Czech Republic or\n")
@@ -324,60 +324,51 @@ def specific_data(index):
     Function to provide more specific data if user wants
     to get more details about Country.
     """
-    while True:
-        print_slowly("Would you like to get more specific data?\n")
-        answer = input("Enter yes/no:\n")
+    print("Would you like to get more specific data?\n")
+    answer_choice = input("Enter yes/no:\n")
+    answer = answer_choice.lower()
 
-        if validate_answer(answer):
-            print(ts.G + "Higher is better 0-100")
-            print(f"Purchasing Power Index is: {index[2][3]}\n")
-            time.sleep(1.2)
-            print(ts.R + "Lower is better 0-100")
-            print(f"Pollution Index: {index[2][9]}\n")
-            time.sleep(1.2)
-            print(ts.R + "Lower is better 0-100")
-            print(f"House Price to Income Ratio: {index[2][7]}\n")
-            time.sleep(1.2)
-            print(ts.R + "Lower is better 0-100")
-            print(f"Cost of Living Index: {index[2][6]}\n")
-            time.sleep(1.2)
-            print(ts.G + "Higher is better 0-100")
-            print(f"Safety Index is: {index[2][4]}\n")
-            time.sleep(1.2)
-            print(ts.G + "Higher is better 0-100")
-            print(f"Health Care Index: {index[2][5]}\n")
-            time.sleep(1.2)
-            print(ts.R + "Lower is better 0-100")
-            print(f"Traffic Commute Time Index: {index[2][8]}\n")
-            time.sleep(1.2)
-            print(ts.G + "Higher is better 0-100")
-            print(f"Climate Index: {index[2][10]}\n")
-            time.sleep(7)
-            clean_screen()
-            other_country()
-            break
+    if answer == "yes":
+        time.sleep(1)
+        clean_screen()
+        print(ts.G + "Higher is better 0-100")
+        print(f"Purchasing Power Index is: {index[2][3]}\n")
+        time.sleep(1)
+        print(ts.R + "Lower is better 0-100")
+        print(f"Pollution Index: {index[2][9]}\n")
+        time.sleep(1)
+        print(ts.R + "Lower is better 0-100")
+        print(f"House Price to Income Ratio: {index[2][7]}\n")
+        time.sleep(1)
+        print(ts.R + "Lower is better 0-100")
+        print(f"Cost of Living Index: {index[2][6]}\n")
+        time.sleep(1)
+        print(ts.G + "Higher is better 0-100")
+        print(f"Safety Index is: {index[2][4]}\n")
+        time.sleep(1)
+        print(ts.G + "Higher is better 0-100")
+        print(f"Health Care Index: {index[2][5]}\n")
+        time.sleep(1)
+        print(ts.R + "Lower is better 0-100")
+        print(f"Traffic Commute Time Index: {index[2][8]}\n")
+        time.sleep(1)
+        print(ts.G + "Higher is better 0-100")
+        print(f"Climate Index: {index[2][10]}\n")
+        time.sleep(4)
+        clean_screen()
+        other_country()
+    elif answer == "no":
+        time.sleep(1)
+        clean_screen()
+        other_country()
+    else:
+        print(ts.R + "Wrong answer! Try again.")
+        print(ts.W + "--------------------------------------------")
+        time.sleep(2)
+        clean_screen()
+        specific_data(index)
 
     return answer
-
-
-def validate_answer(answer):
-    """
-    Will validate users answer if yes/no and
-    will provide more data or error message.
-    """
-    if answer == "yes":
-        print(" ")
-        print("Getting specific data...\n")
-        time.sleep(1.5)
-        clean_screen()
-        return True
-    elif answer == "no":
-        print(" ")
-        other_country()
-        print(" ")
-        return False
-    else:
-        print("wrong answer")
 
 
 def other_country():
@@ -385,22 +376,39 @@ def other_country():
     Ask user if they want data for another country.
     Validate the answer from user.
     """
-    print_slowly("Would you like to get QLI for another Country?\n")
-    other_count_answer = input("Enter yes/no: \n")
+    while True:
+        print(ts.Y + "Would you like to get QLI for another Country?\n")
+        other_count = input("Enter yes/no: \n")
+        other_count_answer = other_count.lower()
 
-    if other_count_answer == "yes":
-        clean_screen()
-        user_cont = select_continent()
-        worksheet = access_sheet(user_cont)
-        data = select_country(worksheet)
-        specific_data(data)
-    elif other_count_answer == "no":
-        print(" ")
-        print_slowly("Thank you for using Quality of Life Index application.")
-        print(" (c) Edmir Demaj 2023")
-        print(" ")
-        time.sleep(2)
-        clean_screen()
+        if other_count_answer == "yes":
+            time.sleep(1)
+            clean_screen()
+            user_cont = select_continent()
+            worksheet = access_sheet(user_cont)
+            data = select_country(worksheet)
+            specific_data(data)
+            return False
+        elif other_count_answer == "no":
+            time.sleep(1)
+            clean_screen()
+            print(" ")
+            print(ts.W + "Terminating application...\n")
+            time.sleep(2)
+            print(" ")
+            print_slowly("Thank you for using Quality of Life Index App.\n")
+            print(" ")
+            print_slowly(ts.Y + "      Copyright Edmir Demaj - 2023\n")
+            print(ts.W + "--------------------------------------------")
+            print(" ")
+            time.sleep(3)
+            clean_screen()
+            return False
+        else:
+            print(ts.R + "Wrong answer! Try again.")
+            print(ts.W + "--------------------------------------------")
+            time.sleep(3)
+            return True
 
 
 def main():
@@ -414,7 +422,7 @@ def main():
     user_cont = select_continent(name)
     worksheet = access_sheet(user_cont)
     data = select_country(worksheet)
-    # specific_data(data)
+    specific_data(data)
 
 
 main()
