@@ -105,14 +105,12 @@ It is not useful for kids.
 
 ### Flowchart
 
-![Flowchart](images/other/Flowchart.jpeg)
+![Flowchart](images/other/flowchart.jpeg)
 
 ### Data Model
-The data model of this application is a mixture of paradigms (Procedural paradigm and OOP paradigm).
-Mostly it is used Functional programming as the application itself consists of getting data and showing data to user and the size of this application doesn't require usage of many Classes from OOP. Functions used are kept small in functionality, meaning each function does one or two small tasks. This way is more easy to fix any possible bugs and reduce complexity. The Class used in the style.py file, allows access to various colours imported from [Colorama library](https://pypi.org/project/colorama/) with shortcuts that are specific to each colour. This way is helpful to reduce length of lines of code.
-<details><summary>Screenshot of Class</summary>
-<img src="images/other/Class-model.png">
-</details>
+The data model used for this application is Google sheets stored on Google cloud platform. Data model used Google sheets stores data, from where using Puthon3 Libraries like gspread (to acccess sheet) and google ouath2 (to access APIs which connect data between 2 applications) can get any data wanted. With Python we access worksheets first based on user selection and from that access data in that worksheet. Each row corresponds to a specific Country and each column to a specific data. Each worksheet corresponds to a continent. Below can find a screenshot how is structured data for our application.
+
+![Screenshot of Google sheet](images/other/googlesheet.png)
 
 ---
 
@@ -241,6 +239,7 @@ To deploy the project on Heroku steps followed are listed below:
 - [sys, time, sleep](https://www.geeksforgeeks.org/sleep-in-python/) - Used to create a typing effect in print statments in the app.
 - [colorama](https://pypi.org/project/colorama/)- Used to provide colour to the text used in the application to provide visual stimulation.
 - [gspread](https://docs.gspread.org/en/latest/user-guide.html#cell-object) - Used to get data from a cloud-based database as vanilla Python doesnt have this functionality.
+- [google oauth2](https://google-auth.readthedocs.io/en/stable/reference/google.oauth2.html) - Used to access Google APIs to connect two applications to exchange data.
 
 ---
 
