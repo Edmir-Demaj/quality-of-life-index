@@ -451,8 +451,8 @@ def main():
     """
     Run all program functions.
     """
-    # logo()
-    # app_info()
+    logo()
+    app_info()
     name = get_user_name()
     user_cont = select_continent(name)
     worksheet = access_sheet(user_cont)
