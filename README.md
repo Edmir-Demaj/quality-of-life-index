@@ -108,8 +108,19 @@ It is not useful for kids.
 ![Flowchart](images/other/flowchart.jpeg)
 
 ### Data Model
-The data model used for this application is Google sheets stored on Google cloud platform. Data model used Google sheets stores data, from where using Puthon3 Libraries like gspread (to acccess sheet) and google ouath2 (to access APIs which connect data between 2 applications) can get any data wanted. With Python we access worksheets first based on user selection and from that access data in that worksheet. Each row corresponds to a specific Country and each column to a specific data. Each worksheet corresponds to a continent. Below can find a screenshot how is structured data for our application.
+The data model used for this application is manipulating data stored on Google Cloud platform (Google sheets) with Python3 functions. This data is accessed using Python Libraries like google oauth2 and gspread. 
+Using Python3 functions i get user input value, validate it and based on this value access google sheet. From there i show to user data using another function.
+A Class named TextStyle is created on style.py file to allow access to various colours with shortcuts that are specific to each colour. Colours are imported from Colorama library are shortened and made easy to access from this Class when needed in the application.
 
+<details><summary>Access-sheet Function model</summary>
+<img src="images/other/access-sheet.png">
+</details>
+<details><summary>Class model TextStyle</summary>
+<img src="images/other/class-model.png">
+</details>
+
+---
+Google sheet data
 ![Screenshot of Google sheet](images/other/googlesheet.png)
 
 ---
