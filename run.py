@@ -122,7 +122,8 @@ def get_user_name():
     print("2 and 13 characters long and no numbers.\n")
 
     while True:
-        username = input(ts.Y + "Please enter your name:\n")
+        name = input(ts.Y + "Please enter your name:\n")
+        username = name.strip()
         print(" ")
         print("Validating your input value...\n")
         time.sleep(2)
@@ -195,7 +196,7 @@ def select_continent(*name):
         print(ts.C + "d) America\n")
         print(ts.C + "e) Oceania\n")
         choice = input(ts.Y + "Please select one of the options:\n")
-        user_choice = choice.lower()
+        user_choice = choice.lower().strip()
         print(" ")
         print("Validating your input value...\n")
         time.sleep(2)
@@ -282,7 +283,7 @@ def select_country(cont_name):
     while True:
         print(" ")
         user_country = input(ts.Y + "Please enter the name of Country:\n")
-        country_name = user_country.title()
+        country_name = user_country.title().strip()
         time.sleep(1)
 
         if validate_country(country_name, cont_name):
@@ -351,12 +352,13 @@ def specific_data(index):
     print(" ")
     print("Would you like to get more specific data?\n")
     answer_choice = input("Enter yes/no:\n")
-    answer = answer_choice.lower()
+    answer = answer_choice.lower().strip()
 
     if answer == "yes":
         time.sleep(1)
         clean_screen()
         print(f"{ts.W}Showing specific data for {index[0]}: ")
+        time.sleep(2)
         print(f"{ts.G}Purchasing Power Index: {index[2][3]}")
         print("Higher is better 0-100\n")
         time.sleep(1.5)
@@ -408,7 +410,7 @@ def other_country():
     print(" ")
     print(ts.Y + "Would you like to get QLI for another Country?\n")
     other_count = input("Enter yes/no:\n")
-    other_count_answer = other_count.lower()
+    other_count_answer = other_count.lower().strip()
 
     if other_count_answer == "yes":
         time.sleep(1)
